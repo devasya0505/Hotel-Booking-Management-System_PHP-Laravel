@@ -98,11 +98,11 @@
                                         <input id="phone_number" type="text"
                                             class="form-control @error('phone_number') is-invalid @enderror"
                                             name="phone_number" value="{{ old('phone_number') }}" required
-                                            autocomplete="tel" placeholder="Phone Number" maxlength="10" pattern="[0-9]+"
+                                            autocomplete="tel" placeholder="" maxlength="10" pattern="[0-9]+"
                                             title="Please enter only numbers"
                                             style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
                                         <label for="phone_number" class="floating-label position-absolute text-muted"
-                                            style="left: 130px; top: 50%; transform: translateY(-50%); transition: all 0.2s ease-in-out; pointer-events: none; z-index: 5; padding: 0 4px;">Phone
+                                            style="left: 130px; top: 50%; transform: translateY(-50%); transition: all 0.2s ease-in-out; pointer-events: none; z-index: 5;">Phone
                                             Number</label>
                                     </div>
                                 </div>
@@ -304,11 +304,6 @@
             style.textContent = `
                 .floating-label {
                     transition: all 0.2s ease-in-out;
-                    background-color: white;
-                    padding: 0 4px;
-                }
-                .input-group:focus-within .floating-label {
-                    color: #0d6efd !important;
                 }
             `;
             document.head.appendChild(style);
@@ -367,11 +362,9 @@
                 if (phoneNumberInput.value.trim() !== '' || phoneNumberInput === document.activeElement) {
                     phoneLabel.style.top = '0';
                     phoneLabel.style.transform = 'translateY(-50%) scale(0.85)';
-                    phoneLabel.style.color = '#6c757d';
                 } else {
                     phoneLabel.style.top = '50%';
                     phoneLabel.style.transform = 'translateY(-50%) scale(1)';
-                    phoneLabel.style.color = '#6c757d';
                 }
             }
 
