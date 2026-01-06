@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\Apartment\Apartment;
 use App\Models\Booking\Booking;
 use App\Models\Hotel\Hotel;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use DateTime;
 use Redirect;
-use Session;
 
 class HotelsController extends Controller
 {
