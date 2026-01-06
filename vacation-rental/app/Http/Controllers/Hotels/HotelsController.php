@@ -91,6 +91,35 @@ class HotelsController extends Controller
         $room = Apartment::find($id);
         $hotel = Hotel::find($id);
 
+        // Validation rules
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'country_code' => 'required|in:+1,+91,+44,+61,+81,+86,+49,+33',
+            'phone_number' => 'required|numeric',
+            'check_in' => 'required|string',
+            'check_out' => 'required|string',
+        ]);
+
+        // Phone number length validation based on country code
+        $phoneLengths = [
+            '+1' => 10,    // USA
+            '+91' => 10,   // India
+            '+44' => 10,   // UK
+            '+61' => 9,    // Australia
+            '+81' => 10,   // Japan
+            '+86' => 11,   // China
+            '+49' => 10,   // Germany
+            '+33' => 9     // France
+        ];
+
+        $expectedLength = $phoneLengths[$request->country_code] ?? 10;
+        if (strlen($request->phone_number) != $expectedLength) {
+            return redirect()->back()->withErrors([
+                'phone_number' => "Phone number must be {$expectedLength} digits for the selected country code."
+            ])->withInput();
+        }
+
         try {
             // CORRECT FORMAT: MM/DD/YYYY (not DD/MM/YYYY)
             $checkIn = DateTime::createFromFormat('m/d/Y', $request->check_in);
@@ -106,9 +135,9 @@ class HotelsController extends Controller
             $checkOut->setTime(0, 0, 0);
 
             // Debug: Uncomment to see dates
-            // return redirect()->back()->with('error', 
-            //     "Current: " . $currentDate->format('m/d/Y') . 
-            //     " | Check-in: " . $checkIn->format('m/d/Y') . 
+            // return redirect()->back()->with('error',
+            //     "Current: " . $currentDate->format('m/d/Y') .
+            //     " | Check-in: " . $checkIn->format('m/d/Y') .
             //     " | Check-out: " . $checkOut->format('m/d/Y'));
 
             if ($checkIn < $currentDate) {
@@ -126,6 +155,7 @@ class HotelsController extends Controller
             Booking::create([
                 "name" => $request->name,
                 "email" => $request->email,
+                "country_code" => $request->country_code,
                 "phone_number" => $request->phone_number,
                 "check_in" => $checkIn->format('Y-m-d'),
                 "check_out" => $checkOut->format('Y-m-d'),
@@ -176,15 +206,15 @@ class HotelsController extends Controller
         if (!session()->has('price')) {
         return redirect()->route('home')->with('error', 'Please complete the booking process first.');
     }
-    
+
     $price = session('price');
     $bookingData = session('booking_data'); // If you have booking data
-    
+
     // Complete logout process
     Auth::logout();
     session()->flush(); // Clear all session data
     session()->regenerate(); // Generate new session ID
-    
+
     return view('hotels.success', compact('price', 'bookingData'));
     }
 }

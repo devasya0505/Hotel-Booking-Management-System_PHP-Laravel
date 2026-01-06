@@ -73,74 +73,107 @@
 
                             <!-- Phone Number -->
                             <div class="col-md-12">
-                                <div class="form-floating mb-3">
-                                    <input id="phone_number" type="text"
-                                        class="form-control @error('phone_number') is-invalid @enderror" name="phone_number"
-                                        value="{{ old('phone_number') }}" required autocomplete="tel" placeholder="">
-                                    <label for="phone_number">Phone Number</label>
-                                    @error('phone_number')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <!-- Check-in and Check-out side by side -->
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <div class="form-group">
-                                            <div class="input-wrap">
-                                                <div class="icon"><span class="ion-md-calendar"></span></div>
-                                                <label for="check-in">Check In</label>
-                                                <input id="check-in" type="text"
-                                                    class="form-control appointment_date-check-in @error('check_in') is-invalid @enderror"
-                                                    name="check_in" value="{{ old('check_in') }}" required placeholder=""
-                                                    autocomplete="off">
-                                            </div>
-                                            @error('check_in')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6 mb-3">
-                                        <div class="form-group">
-                                            <div class="input-wrap">
-                                                <div class="icon"><span class="ion-md-calendar"></span></div>
-                                                <label for="check-in">Check Out</label>
-                                                <input id="check-out" type="text"
-                                                    class="form-control appointment_date-check-out @error('check_out') is-invalid @enderror"
-                                                    name="check_out" value="{{ old('check_out') }}" required placeholder=""
-                                                    autocomplete="off">
-                                            </div>
-                                            @error('check_out')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
+                                <div class="mb-3 position-relative">
+                                    <div class="input-group">
+                                        <select class="form-select" id="country_code" name="country_code"
+                                            style="max-width: 120px; border-top-right-radius: 0; border-bottom-right-radius: 0;"
+                                            required>
+                                            <option value="+1" {{ old('country_code') == '+1' ? 'selected' : '' }}>🇺🇸
+                                                +1</option>
+                                            <option value="+91" {{ old('country_code') == '+91' ? 'selected' : '' }}>
+                                                🇮🇳 +91</option>
+                                            <option value="+44" {{ old('country_code') == '+44' ? 'selected' : '' }}>
+                                                🇬🇧 +44</option>
+                                            <option value="+61" {{ old('country_code') == '+61' ? 'selected' : '' }}>
+                                                🇦🇺 +61</option>
+                                            <option value="+81" {{ old('country_code') == '+81' ? 'selected' : '' }}>
+                                                🇯🇵 +81</option>
+                                            <option value="+86" {{ old('country_code') == '+86' ? 'selected' : '' }}>
+                                                🇨🇳 +86</option>
+                                            <option value="+49" {{ old('country_code') == '+49' ? 'selected' : '' }}>
+                                                🇩🇪 +49</option>
+                                            <option value="+33" {{ old('country_code') == '+33' ? 'selected' : '' }}>
+                                                🇫🇷 +33</option>
+                                        </select>
+                                        <input id="phone_number" type="text"
+                                            class="form-control @error('phone_number') is-invalid @enderror"
+                                            name="phone_number" value="{{ old('phone_number') }}" required
+                                            autocomplete="tel" placeholder="Phone Number" maxlength="10" pattern="[0-9]+"
+                                            title="Please enter only numbers"
+                                            style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                                        <label for="phone_number" class="floating-label position-absolute text-muted"
+                                            style="left: 130px; top: 50%; transform: translateY(-50%); transition: all 0.2s ease-in-out; pointer-events: none; z-index: 5; padding: 0 4px;">Phone
+                                            Number</label>
                                     </div>
                                 </div>
+                                @error('phone_number')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                @error('country_code')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
+                        </div>
 
-                            <!-- Submit Button -->
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    @if (isset(Auth::user()->id))
-                                        <input type="submit" value="Book and Pay Now" class="btn btn-primary py-3 px-4">
-                                    @else
-                                        <p class="alert alert-success">PLease Login to book a room</p>
-                                    @endif
+                        <!-- Check-in and Check-out side by side -->
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group">
+                                        <div class="input-wrap">
+                                            <div class="icon"><span class="ion-md-calendar"></span></div>
+                                            <label for="check-in">Check In</label>
+                                            <input id="check-in" type="text"
+                                                class="form-control appointment_date-check-in @error('check_in') is-invalid @enderror"
+                                                name="check_in" value="{{ old('check_in') }}" required placeholder=""
+                                                autocomplete="off">
+                                        </div>
+                                        @error('check_in')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group">
+                                        <div class="input-wrap">
+                                            <div class="icon"><span class="ion-md-calendar"></span></div>
+                                            <label for="check-in">Check Out</label>
+                                            <input id="check-out" type="text"
+                                                class="form-control appointment_date-check-out @error('check_out') is-invalid @enderror"
+                                                name="check_out" value="{{ old('check_out') }}" required placeholder=""
+                                                autocomplete="off">
+                                        </div>
+                                        @error('check_out')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </form>
+
+                        <!-- Submit Button -->
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @if (isset(Auth::user()->id))
+                                    <input type="submit" value="Book and Pay Now" class="btn btn-primary py-3 px-4">
+                                @else
+                                    <p class="alert alert-success">PLease Login to book a room</p>
+                                @endif
+                            </div>
+                        </div>
                 </div>
+                </form>
             </div>
+        </div>
         </div>
     </section>
 
@@ -261,4 +294,93 @@
             </div>
         </div>
     </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const countryCodeSelect = document.getElementById('country_code');
+            const phoneNumberInput = document.getElementById('phone_number');
+
+            // Add CSS for floating label
+            const style = document.createElement('style');
+            style.textContent = `
+                .floating-label {
+                    transition: all 0.2s ease-in-out;
+                    background-color: white;
+                    padding: 0 4px;
+                }
+                .input-group:focus-within .floating-label {
+                    color: #0d6efd !important;
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Country code to expected phone number length mapping
+            const phoneLengths = {
+                '+1': 10, // USA
+                '+91': 10, // India
+                '+44': 10, // UK (simplified)
+                '+61': 9, // Australia
+                '+81': 10, // Japan (simplified)
+                '+86': 11, // China
+                '+49': 10, // Germany (simplified)
+                '+33': 9 // France
+            };
+
+            function validatePhoneNumber() {
+                const selectedCountry = countryCodeSelect.value;
+                const expectedLength = phoneLengths[selectedCountry];
+                const phoneValue = phoneNumberInput.value.replace(/\D/g, ''); // Remove non-digits
+
+                if (phoneValue.length > 0 && phoneValue.length !== expectedLength) {
+                    phoneNumberInput.setCustomValidity(
+                        `Phone number must be ${expectedLength} digits for the selected country`);
+                    phoneNumberInput.classList.add('is-invalid');
+                } else {
+                    phoneNumberInput.setCustomValidity('');
+                    phoneNumberInput.classList.remove('is-invalid');
+                }
+            }
+
+            // Validate on country code change
+            countryCodeSelect.addEventListener('change', validatePhoneNumber);
+
+            // Validate on phone number input
+            phoneNumberInput.addEventListener('input', function() {
+                // Allow only numbers
+                this.value = this.value.replace(/\D/g, '');
+                validatePhoneNumber();
+            });
+
+            // Validate on form submit
+            const form = document.querySelector('.appointment-form');
+            form.addEventListener('submit', function(e) {
+                validatePhoneNumber();
+                if (!phoneNumberInput.checkValidity()) {
+                    e.preventDefault();
+                    phoneNumberInput.reportValidity();
+                }
+            });
+
+            // Floating label functionality for phone number
+            const phoneLabel = document.querySelector('label[for="phone_number"]');
+
+            function updateLabelPosition() {
+                if (phoneNumberInput.value.trim() !== '' || phoneNumberInput === document.activeElement) {
+                    phoneLabel.style.top = '0';
+                    phoneLabel.style.transform = 'translateY(-50%) scale(0.85)';
+                    phoneLabel.style.color = '#6c757d';
+                } else {
+                    phoneLabel.style.top = '50%';
+                    phoneLabel.style.transform = 'translateY(-50%) scale(1)';
+                    phoneLabel.style.color = '#6c757d';
+                }
+            }
+
+            phoneNumberInput.addEventListener('focus', updateLabelPosition);
+            phoneNumberInput.addEventListener('blur', updateLabelPosition);
+            phoneNumberInput.addEventListener('input', updateLabelPosition);
+
+            // Initial check
+            updateLabelPosition();
+        });
+    </script>
 @endsection
