@@ -85,12 +85,5 @@
             </main>
         </div>
     </div>
-    <script>
-        window.addEventListener('beforeunload', function(event) {
-            // Send logout request when window is closing
-            navigator.sendBeacon('{{ route("admin.logout") }}', new FormData(document.getElementById('logout-form')));
-        });
-    </script>
 </body>
-
 </html>
