@@ -39,7 +39,8 @@
                                 <a class="nav-link" href="{{ route('rooms.all') }}" style="margin-left: 20px;">Rooms</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('bookings.all') }}" style="margin-left: 20px;">Bookings</a>
+                                <a class="nav-link" href="{{ route('bookings.all') }}"
+                                    style="margin-left: 20px;">Bookings</a>
                             </li>
                         </ul>
                     @endauth
@@ -85,5 +86,11 @@
             </main>
         </div>
     </div>
+    <script>
+        window.addEventListener('beforeunload', function(event) {
+            // Send logout request when window is closing
+            navigator.sendBeacon('{{ route("admin.logout") }}', new FormData(document.getElementById('logout-form')));
+        });
+    </script>
 </body>
 </html>
