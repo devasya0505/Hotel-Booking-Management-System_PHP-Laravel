@@ -36,4 +36,4 @@ RUN php artisan config:clear && \
 
 
 # Start server
-CMD php artisan migrate --force || true && php artisan serve --host=0.0.0.0 --port=$PORT
+CMD php artisan migrate:fresh --force && php artisan serve --host=0.0.0.0 --port=$PORT
