@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('bookings', function (Blueprint $table) {
-            $table->string('country_code', 10)->after('email')->default('+1');
-        });
+        if (Schema::hasTable('bookings') && !Schema::hasColumn('bookings', 'country_code')) {
+            Schema::table('bookings', function (Blueprint $table) {
+                $table->string('country_code', 10)->after('email')->default('+1');
+            });
+        }
     }
 
     /**
@@ -21,8 +23,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('bookings', function (Blueprint $table) {
-            $table->dropColumn('country_code');
-        });
+        if (Schema::hasTable('bookings') && Schema::hasColumn('bookings', 'country_code')) {
+            Schema::table('bookings', function (Blueprint $table) {
+                $table->dropColumn('country_code');
+            });
+        }
     }
 };

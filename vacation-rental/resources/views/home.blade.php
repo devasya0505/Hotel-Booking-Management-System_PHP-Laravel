@@ -57,7 +57,7 @@
                                 <!-- <p class="mb-0"><span class="price mr-1">$120.00</span> <span class="per">per night</span></p> -->
                                 <h3 class="mb-3"><a href="{{ route('hotel.rooms.details', $room->id) }}">{{ $room->name }}</a></h3>
                                 <ul class="list-accomodation">
-                                    <li><span>Max:</span> {{ $room->num_persons }} Persons</li>
+                                    <li><span>Max:</span> {{ $room->max_persons }} Persons</li>
                                     <li><span>Size:</span> {{ $room->size }} m<sup>2</sup></li>
                                     <li><span>View:</span> {{ $room->view }}</li>
                                     <li><span>Bed:</span> {{ $room->num_beds }} </li>

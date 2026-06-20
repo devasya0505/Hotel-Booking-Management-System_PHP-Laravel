@@ -29,6 +29,10 @@ COPY . .
 # Copy built frontend assets
 COPY --from=frontend /app/public/build /var/www/public/build
 
+# Copy startup script
+COPY docker/start.sh /usr/local/bin/start.sh
+RUN chmod +x /usr/local/bin/start.sh
+
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
@@ -40,5 +44,5 @@ RUN php artisan config:clear && \
 # Expose port (Render uses dynamic PORT)
 EXPOSE 8000
 
-# Start server (FINAL CORRECT COMMAND)
-CMD php artisan serve --host=0.0.0.0 --port=$PORT
+# Run migrations and start server
+CMD ["/usr/local/bin/start.sh"]
