@@ -4,6 +4,9 @@
 <head>
     <meta charset="utf-8">
     <title>Admin Panel</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{{ asset('assets/images/favicon.svg') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.svg') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('assets/styles/style.css') }}" rel="stylesheet">
