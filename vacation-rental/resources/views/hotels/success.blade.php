@@ -11,7 +11,7 @@
                 <div class="col-md-7 ftco-animate">
                     <h1 class="mb-4">Booked Successfully</h1>
                     <p><strong>Thank you for your booking. You have been logged out for security.</strong></p>
-                    <p><strong>Amount Paid: ${{ $price }}</strong></p>
+                    <p><strong>Amount Paid: Rs. {{ $price }}</strong></p>
                     <h1 class="mb-4"></h1>
                     <p><a href="{{ route('home') }}" class="btn btn-primary">Go Home</a> </p>
                 </div>
@@ -27,7 +27,7 @@
         <div class="alert alert-success">
             <h4>Payment Successful! 🎉</h4>
             <p>Thank you for your booking. You have been logged out for security.</p>
-            <p><strong>Amount Paid: ${{ $price }}</strong></p>
+            <p><strong>Amount Paid: Rs. {{ $price }}</strong></p>
         </div>
 
         <div class="text-center">

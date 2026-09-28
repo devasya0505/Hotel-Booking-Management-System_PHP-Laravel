@@ -43,7 +43,7 @@
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-light">
-                                    <i class="fas fa-dollar-sign text-primary"></i>
+                                    <span class="text-primary font-weight-bold">Rs.</span>
                                 </span>
                             </div>
                             <input type="text" name="price" id="price" class="form-control" 

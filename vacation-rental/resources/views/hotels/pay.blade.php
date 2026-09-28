@@ -11,7 +11,7 @@
                     <h1 style="margin-left: 200px" class="subheading">Pay with PayPal</h1>
 
                     <div class="col-md-6 text-center">
-                        <h3 class="mb-4 text-white">Amount: ${{ Session::get('price', 0.0) }}</h3>
+                        <h3 class="mb-4 text-white">Amount: Rs. {{ Session::get('price', 0.0) }}</h3>
                     </div>
                     {{-- <p><a href="{{ route('home') }}" class="btn btn-primary">Go Home</a></p> --}}
                 </div>

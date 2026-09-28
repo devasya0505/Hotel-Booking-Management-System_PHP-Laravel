@@ -103,7 +103,7 @@
                                             @endif
                                         </td>
                                         <td class="text-center font-weight-bold text-success">
-                                            ${{ $booking->price }}
+                                            Rs. {{ $booking->price }}
                                         </td>
                                         <td class="text-center">
                                             <a href="{{ route('bookings.edit.status', $booking->id) }}"

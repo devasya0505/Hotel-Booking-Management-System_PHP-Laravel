@@ -29,7 +29,7 @@
                                     <p class="star mb-0"><span class="fa fa-star"></span><span
                                             class="fa fa-star"></span><span class="fa fa-star"></span><span
                                             class="fa fa-star"></span><span class="fa fa-star"></span></p>
-                                    <p class="mb-0"><span class="price mr-1">${{ $room->price }} </span> <span
+                                    <p class="mb-0"><span class="price mr-1">Rs. {{ $room->price }} </span> <span
                                             class="per">per
                                             night</span></p>
                                     <h3 class="mb-3"><a href="{{ route('hotel.rooms.details', $room->id) }}">{{ $room->name }}</a></h3>

@@ -75,7 +75,7 @@
                                                 class="rounded shadow-sm" alt="{{ $room->name }}">
                                         </td>
                                         <td class="text-center font-weight-bold text-success">
-                                            ${{ $room->price }}
+                                            Rs. {{ $room->price }}
                                         </td>
                                         <td class="text-center">
                                             <span class="badge badge-primary py-2 px-3">

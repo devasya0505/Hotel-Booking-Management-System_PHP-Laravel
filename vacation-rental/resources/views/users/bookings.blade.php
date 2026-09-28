@@ -39,7 +39,7 @@
                         <td>{{ \Carbon\Carbon::parse($booking->check_in)->format('d-m-Y') }}</td>
                         <td>{{ \Carbon\Carbon::parse($booking->check_out)->format('d-m-Y') }}</td>
                         <td>{{ $booking->days }}</td>
-                        <td>${{ $booking->price }}</td>
+                        <td>Rs. {{ $booking->price }}</td>
                         <td>{{ $booking->room_name }}</td>
                         <td>{{ $booking->hotel_name }}</td>
                         <td>
