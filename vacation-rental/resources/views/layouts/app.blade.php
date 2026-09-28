@@ -154,29 +154,28 @@
                 </button>
                 <div class="collapse navbar-collapse" id="ftco-nav">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active"><a href=" {{ route('home') }}" class="nav-link">Home</a></li>
-                        <li class="nav-item"><a href=" {{ route('about') }}" class="nav-link">About</a></li>
-                        <li class="nav-item"><a href="{{ route('services') }}" class="nav-link">Services</a></li>
+                        <li class="nav-item {{ Request::routeIs('home') || Request::routeIs('index') ? 'active' : '' }}"><a href="{{ route('home') }}" class="nav-link">Home</a></li>
+                        <li class="nav-item {{ Request::routeIs('about') ? 'active' : '' }}"><a href="{{ route('about') }}" class="nav-link">About</a></li>
+                        <li class="nav-item {{ Request::routeIs('services') ? 'active' : '' }}"><a href="{{ route('services') }}" class="nav-link">Services</a></li>
                         {{-- <li class="nav-item"><a href="rooms.html" class="nav-link">Apartment Room</a></li> --}}
-                        <li class="nav-item"><a href="{{ route('contact') }}" class="nav-link">Contact</a></li>
+                        <li class="nav-item {{ Request::routeIs('contact') ? 'active' : '' }}"><a href="{{ route('contact') }}" class="nav-link">Contact</a></li>
                         @guest
                             @if (Route::has('login'))
-                                <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">Login</a></li>
+                                <li class="nav-item {{ Request::routeIs('login') ? 'active' : '' }}"><a href="{{ route('login') }}" class="nav-link">Login</a></li>
                             @endif
 
                             @if (Route::has('register'))
-                                <li class="nav-item"><a href="{{ route('register') }}" class="nav-link">Register</a>
-                                </li>
+                                <li class="nav-item {{ Request::routeIs('register') ? 'active' : '' }}"><a href="{{ route('register') }}" class="nav-link">Register</a></li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown {{ Request::routeIs('users.bookings') ? 'active' : '' }}">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('users.bookings') }}">
+                                    <a class="dropdown-item {{ Request::routeIs('users.bookings') ? 'active' : '' }}" href="{{ route('users.bookings') }}">
                                         My Bookings
                                     </a>
                                     <a class="dropdown-item" href="{{ route('login') }}"
@@ -294,8 +293,6 @@
     <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
     <script src="{{ asset('assets/js/scrollax.min.js') }}"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-    <script src="{{ asset('assets/js/google-map.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
 </body>
 

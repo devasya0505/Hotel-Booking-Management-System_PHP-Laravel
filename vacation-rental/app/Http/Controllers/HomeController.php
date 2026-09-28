@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Hotel\Hotel;
 use App\Models\Apartment\Apartment;
 
+use App\Models\Contact;
+
 class HomeController extends Controller
 {
     /**
@@ -41,5 +43,19 @@ class HomeController extends Controller
 
     public function contact(){
         return view('pages.contact');
+    }
+
+    public function contactSubmit(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'subject' => 'required|string|max:255',
+            'message' => 'required|string',
+        ]);
+
+        Contact::create($validated);
+
+        return redirect()->back()->with('success', 'Your message was sent successfully! Thank you for contacting us.');
     }
 }
