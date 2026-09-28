@@ -123,9 +123,10 @@
 }
 .datepicker table tr td.disabled,
 .datepicker table tr td.disabled:hover {
-  background: none;
-  color: #999999;
-  cursor: default;
+  background: none !important;
+  color: #c4c4c4 !important;
+  opacity: 0.4 !important;
+  cursor: not-allowed !important;
 }
 .datepicker table tr td.today,
 .datepicker table tr td.today:hover,
@@ -499,8 +500,8 @@
   -webkit-background-clip: padding-box;
   -moz-background-clip: padding;
   background-clip: padding-box;
-  *border-right-width: 2px;
-  *border-bottom-width: 2px;
+  border-right-width: 2px;
+  border-bottom-width: 2px;
   color: #333333;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 13px;

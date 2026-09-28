@@ -129,7 +129,7 @@
                                             <label for="check-in">Check In</label>
                                             <input id="check-in" type="text"
                                                 class="form-control appointment_date-check-in @error('check_in') is-invalid @enderror"
-                                                name="check_in" value="{{ old('check_in') }}" required placeholder=""
+                                                name="check_in" value="{{ old('check_in') }}" required placeholder="DD-MM-YYYY"
                                                 autocomplete="off">
                                         </div>
                                         @error('check_in')
@@ -144,10 +144,10 @@
                                     <div class="form-group">
                                         <div class="input-wrap">
                                             <div class="icon"><span class="ion-md-calendar"></span></div>
-                                            <label for="check-in">Check Out</label>
+                                            <label for="check-out">Check Out</label>
                                             <input id="check-out" type="text"
                                                 class="form-control appointment_date-check-out @error('check_out') is-invalid @enderror"
-                                                name="check_out" value="{{ old('check_out') }}" required placeholder=""
+                                                name="check_out" value="{{ old('check_out') }}" required placeholder="DD-MM-YYYY"
                                                 autocomplete="off">
                                         </div>
                                         @error('check_out')

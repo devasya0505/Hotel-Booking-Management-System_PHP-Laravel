@@ -149,14 +149,44 @@
 	};
 	contentWayPoint();
 
+	// Datepicker configuration: DD-MM-YYYY format and gray out past dates
+	var today = new Date();
+	today.setHours(0, 0, 0, 0);
+
 	$('.appointment_date-check-in').datepicker({
-	  'format': 'm/d/yyyy',
-	  'autoclose': true
+	  'format': 'dd-mm-yyyy',
+	  'autoclose': true,
+	  'startDate': today,
+	  'todayHighlight': true
+	}).on('changeDate', function(e) {
+	  if (e.date) {
+	    var nextDay = new Date(e.date);
+	    nextDay.setDate(nextDay.getDate() + 1);
+	    $('.appointment_date-check-out').datepicker('setStartDate', nextDay);
+	    var currentCheckOut = $('.appointment_date-check-out').datepicker('getDate');
+	    if (currentCheckOut && currentCheckOut <= e.date) {
+	      $('.appointment_date-check-out').datepicker('setDate', nextDay);
+	    }
+	  } else {
+	    $('.appointment_date-check-out').datepicker('setStartDate', today);
+	  }
 	});
+
 	$('.appointment_date-check-out').datepicker({
-	  'format': 'm/d/yyyy',
-	  'autoclose': true
+	  'format': 'dd-mm-yyyy',
+	  'autoclose': true,
+	  'startDate': today,
+	  'todayHighlight': true
 	});
+
+	if ($('.appointment_date-check-in').val()) {
+	  var initialCheckIn = $('.appointment_date-check-in').datepicker('getDate');
+	  if (initialCheckIn) {
+	    var nextDay = new Date(initialCheckIn);
+	    nextDay.setDate(nextDay.getDate() + 1);
+	    $('.appointment_date-check-out').datepicker('setStartDate', nextDay);
+	  }
+	}
 
 	$('.appointment_time').timepicker();
 

@@ -36,8 +36,8 @@
                         <th scope="row">{{ $booking->name }}</th>
                         <td>{{ $booking->email }}</td>
                         <td>{{ $booking->phone_number }}</td>
-                        <td>{{ $booking->check_in }}</td>
-                        <td>{{ $booking->check_out }}</td>
+                        <td>{{ \Carbon\Carbon::parse($booking->check_in)->format('d-m-Y') }}</td>
+                        <td>{{ \Carbon\Carbon::parse($booking->check_out)->format('d-m-Y') }}</td>
                         <td>{{ $booking->days }}</td>
                         <td>${{ $booking->price }}</td>
                         <td>{{ $booking->room_name }}</td>

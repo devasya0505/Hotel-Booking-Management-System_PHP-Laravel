@@ -121,12 +121,12 @@ class HotelsController extends Controller
         }
 
         try {
-            // CORRECT FORMAT: MM/DD/YYYY (not DD/MM/YYYY)
-            $checkIn = DateTime::createFromFormat('m/d/Y', $request->check_in);
-            $checkOut = DateTime::createFromFormat('m/d/Y', $request->check_out);
+            // FORMAT: DD-MM-YYYY (d-m-Y), with fallback to MM/DD/YYYY (m/d/Y)
+            $checkIn = DateTime::createFromFormat('d-m-Y', $request->check_in) ?: DateTime::createFromFormat('m/d/Y', $request->check_in);
+            $checkOut = DateTime::createFromFormat('d-m-Y', $request->check_out) ?: DateTime::createFromFormat('m/d/Y', $request->check_out);
 
             if (!$checkIn || !$checkOut) {
-                return redirect()->back()->with('error', 'Invalid date format. Please use MM/DD/YYYY format.');
+                return redirect()->back()->with('error', 'Invalid date format. Please use DD-MM-YYYY format.');
             }
 
             $currentDate = new DateTime();
